@@ -31,7 +31,8 @@ let budgetController = (function(){
             income: 0
         },
         budget: 0,
-        percentage: -1
+        incomePercentage: -1,
+        expensePercentage: -1
     }
 
     return {
@@ -82,14 +83,16 @@ let budgetController = (function(){
         calculateBudget: function(){
             // calculate total income and expense
             calculateTotal("expense");
-            let inc = calculateTotal("income");
+            calculateTotal("income");
             // calculate the budget income and expense
             data.budget = data.total.income - data.total.expense;
             //calculate the percentage of income that we spent
             if(data.total.income > 0){
-                data.percentage = Math.round((data.total.expense / data.total.income) * 100);
+                data.expensePercentage = Math.round((data.total.expense / data.total.income) * 100);
+                data.incomePercentage = 100;
             } else {
-                data.percentage = -1;
+                data.expensePercentage = -1;
+                data.incomePercentage = -1;
             }
         },
 
@@ -98,7 +101,8 @@ let budgetController = (function(){
                 budget: data.budget,
                 totalIncome: data.total.income,
                 totalExpense: data.total.expense,
-                percentage: data.percentage
+                incomePercentage: data.incomePercentage,
+                expensePercentage: data.expensePercentage
             }
         },
 
@@ -124,7 +128,8 @@ let UIController = (function(){
         budgetLabel: '.budget__value',
         incomeLabel: '.budget__income--value',
         expenseLabel: '.budget__expenses--value',
-        percentageLabel: '.budget__expenses--percentage',
+        expensePercentageLabel: '.budget__expenses--percentage',
+        incomePercentageLabel: '.budget__income--percentage',
         container: '.container'
     };
 
@@ -147,12 +152,13 @@ let UIController = (function(){
 
             if(type === 'expense'){
                 element = elements.expenseContainer;
-                html = '<div class="item clearfix" id="expense-%id%"><div class="item__description">%description%</div><div class="right clearfix"><div class="item__value">%value%</div><div class="item__percentage">21%</div><div class="item__delete"><button class="item__delete--btn"><i class="ion-ios-close-outline"></i></button></div></div></div>'
+                html = '<div class="item clearfix" id="expense-%id%"><div class="item__description">%description%</div><div class="right clearfix"><div class="item__value">%value%</div><div class="item__percentage">%percentage%</div><div class="item__delete"><button class="item__delete--btn"><i class="ion-ios-close-outline"></i></button></div></div></div>'
             }
 
             newHtml = html.replace('%id%', obj.id);
             newHtml = newHtml.replace('%value%', `$${obj.value}`);
             newHtml = newHtml.replace('%description%', obj.description);
+            // newHtml = newHtml.replace('%percentage%', obj.expensePercentage);
 
 
             document.querySelector(element).insertAdjacentHTML('beforeend', newHtml);
@@ -177,11 +183,12 @@ let UIController = (function(){
 
         displayBudget: function(obj){
 
-            document.querySelector(elements.budgetLabel).textContent = `$${obj.budget}`;
-            if(obj.percentage > 0){
-                document.querySelector(elements.percentageLabel).textContent = obj.percentage + '%';
+            document.querySelector(elements.budgetLabel).textContent = `+ $${obj.budget}`;
+            if(obj.incomePercentage > 0){
+                document.querySelector(elements.expensePercentageLabel).textContent = obj.expensePercentage + '%';
+                document.querySelector(elements.incomePercentageLabel).textContent = obj.incomePercentage + '%';
             } else{
-                document.querySelector(elements.percentageLabel).textContent = '0%';
+                document.querySelector(elements.expensePercentageLabel).textContent = '0%';
             }
         },
         getElements: function(){
@@ -260,7 +267,9 @@ let controller = (function(budgetCtrl, UICtrl){
                 budget: 0,
                 totalIncome: 0,
                 totalExpense: 0,
-                percentage: -1
+                expensePercentage: -1,
+                incomePercentage: -1,
+
             });
         }
     }
