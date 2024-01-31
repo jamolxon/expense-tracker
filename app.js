@@ -183,7 +183,10 @@ let UIController = (function(){
 
         displayBudget: function(obj){
 
+            document.querySelector(elements.incomeLabel).textContent = `+ $${obj.totalIncome}`;
+            document.querySelector(elements.expenseLabel).textContent = `- $${obj.totalExpense}`;
             document.querySelector(elements.budgetLabel).textContent = `+ $${obj.budget}`;
+
             if(obj.incomePercentage > 0){
                 document.querySelector(elements.expensePercentageLabel).textContent = obj.expensePercentage + '%';
                 document.querySelector(elements.incomePercentageLabel).textContent = obj.incomePercentage + '%';
