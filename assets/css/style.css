@@ -113,6 +113,7 @@ body {
     border-radius: 3px;
 }
 
+
 .add {
     padding: 14px;
     border-bottom: 1px solid #e7e7e7;
@@ -127,6 +128,7 @@ body {
 .add__type {
     width: 55px;
     border: 1px solid #e7e7e7;
+    border-radius: 5px;
     height: 44px;
     font-size: 18px;
     color: inherit;
@@ -134,6 +136,7 @@ body {
     margin-right: 10px;
     font-weight: 300;
     transition: border 0.3s;
+    text-align: center;
 }
 
 .add__description,
