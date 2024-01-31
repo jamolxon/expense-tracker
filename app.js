@@ -117,9 +117,6 @@ let budgetController = (function(){
 
 })();
 
-budgetController.test_info()
-
-
 
 let UIController = (function(){
     let elements = {
