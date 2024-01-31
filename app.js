@@ -1,6 +1,5 @@
 let budgetController = (function(){
 
-    console.log("Hey");
     let Expense = function(id, description, value){
         this.id = id;
         this.description = description;
@@ -40,15 +39,15 @@ let budgetController = (function(){
             let newItem, ID;
 
             // Create new ID
-            if(data.allItems[type].length > 0){
+            if(data.allItems[type].length > 0) {
                 ID = data.allItems[type][data.allItems[type].length - 1].id + 1;
             }
-            else{
+            else {
                 ID = 0;
             }
 
             // Create new ITEM based on "income" or "expense" type
-            if(type === 'expense'){
+            if(type === 'expense') {
                 newItem = new Expense(ID, description, value)
             }
             else {
@@ -62,8 +61,6 @@ let budgetController = (function(){
 
         deleteItem: function (type, id) {
             let ids, index, money_type;
-
-            //ids = [1,2,4,6,8]
 
             if (type === 'income') {
                 money_type = 'income';
@@ -92,7 +89,7 @@ let budgetController = (function(){
             // calculate the budget income and expense
             data.budget = data.total.income - data.total.expense;
 
-            //calculate the percentage of income that we spent
+            // calculate the percentage of income that we spent
             if(data.total.income > 0) {
                 data.expensePercentage = Math.round((data.total.expense / data.total.income) * 100);
                 data.incomePercentage = 100;
@@ -152,30 +149,25 @@ let UIController = (function(){
             };
         },
         addListItem: function (obj, type) {
-            // Create html string with plaeholder
-            let html, newHtml, element;
+            let item, element;
 
             if(type === 'income'){
                 element = elements.inputContainer;
-                html = '<div class="item clearfix" id="income-%id%"><div class="item__description">%description%</div><div class="right clearfix"><div class="item__value">%value%</div><div class="item__delete"><button class="item__delete--btn"><i class="ion-ios-close-outline"></i></button></div></div></div>'
+                item = `<div class="item clearfix" id="income-${obj.id}"><div class="item__description">${obj.description}</div><div class="right clearfix"><div class="item__value">$ ${obj.value}</div><div class="item__delete"><button class="item__delete--btn"><i class="ion-ios-close-outline"></i></button></div></div></div>`
                 // income percentage for later version: <div class="item__percentage">20%</div>
             }
 
             if(type === 'expense'){
                 element = elements.expenseContainer;
-                html = '<div class="item clearfix" id="expense-%id%"><div class="item__description">%description%</div><div class="right clearfix"><div class="item__value">%value%</div><div class="item__delete"><button class="item__delete--btn"><i class="ion-ios-close-outline"></i></button></div></div></div>'
+                item = `<div class="item clearfix" id="expense-${obj.id}"><div class="item__description">${obj.description}</div><div class="right clearfix"><div class="item__value">$ ${obj.value}</div><div class="item__delete"><button class="item__delete--btn"><i class="ion-ios-close-outline"></i></button></div></div></div>`
                 // expense percentage for later version: <div class="item__percentage">20%</div>
             }
 
-            newHtml = html.replace('%id%', obj.id);
-            newHtml = newHtml.replace('%value%', `$${obj.value}`);
-            newHtml = newHtml.replace('%description%', obj.description);
-
-            document.querySelector(element).insertAdjacentHTML('afterend', newHtml);
+            document.querySelector(element).insertAdjacentHTML('afterend', item);
         },
         clearFields: function(){
             let fields, fieldsArr;
-            fields = document.querySelectorAll(elements.inputDescription + ', ' + elements.inputValue);
+            fields = document.querySelectorAll(`${elements.inputDescription}, ${elements.inputValue}`);
 
             // the code with list
             // fields.forEach(function(current, index, array){
@@ -196,10 +188,10 @@ let UIController = (function(){
             document.querySelector(elements.budgetLabel).textContent = `$${obj.budget}`;
 
             if(obj.incomePercentage > 0){
-                document.querySelector(elements.expensePercentageLabel).textContent = obj.expensePercentage + '%';
-                document.querySelector(elements.incomePercentageLabel).textContent = obj.incomePercentage + '%';
+                document.querySelector(elements.expensePercentageLabel).textContent = `${obj.expensePercentage}%`;
+                document.querySelector(elements.incomePercentageLabel).textContent = `${obj.incomePercentage}%`;
             } else{
-                document.querySelector(elements.expensePercentageLabel).textContent = '0%';
+                document.querySelector(elements.expensePercentageLabel).textContent = `0%`;
             }
         },
         getElements: function(){
@@ -270,10 +262,10 @@ let controller = (function(budgetCtrl, UICtrl){
             type = splitID[0];
             ID = parseInt(splitID[1]);
 
-            //1. Delete item from the data structure
+            // 1. Delete item from the data structure
             budgetCtrl.deleteItem(type, ID);
 
-            //2. Delete item from the UI
+            // 2. Delete item from the UI
             if (type === "income") {
                 document.querySelector(elements.incomeItem + ID).remove();
             }
@@ -281,7 +273,7 @@ let controller = (function(budgetCtrl, UICtrl){
                 document.querySelector(elements.expenseItem + ID).remove();
             }
 
-            //3. Update and show the new budget
+            // 3. Update and show the new budget
             updateBudget();
         }
     }
