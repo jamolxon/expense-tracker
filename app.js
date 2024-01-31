@@ -161,7 +161,7 @@ let UIController = (function(){
             // newHtml = newHtml.replace('%percentage%', obj.expensePercentage);
 
 
-            document.querySelector(element).insertAdjacentHTML('beforeend', newHtml);
+            document.querySelector(element).insertAdjacentHTML('afterend', newHtml);
         },
         clearFields: function(){
             let fields, fieldsArr;
@@ -216,7 +216,6 @@ let controller = (function(budgetCtrl, UICtrl){
             }
         });
         document.querySelector(elements.container).addEventListener('click', ctrlDeleteItem);
-        // code goes on from here.
     }
 
     let updateBudget = function(){

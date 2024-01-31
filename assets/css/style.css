@@ -4,6 +4,7 @@
     box-sizing: border-box;
 }
 
+
 .clearfix::after {
     content: "";
     display: table;
@@ -153,7 +154,7 @@ body {
 }
 
 .add__description { width: 400px;}
-.add__value { width: 100px;}
+.add__value { width: 115px;}
 
 .add__btn {
     font-size: 35px;
