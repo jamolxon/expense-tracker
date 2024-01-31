@@ -152,7 +152,7 @@ let UIController = (function(){
 
             if(type === 'expense'){
                 element = elements.expenseContainer;
-                html = '<div class="item clearfix" id="expense-%id%"><div class="item__description">%description%</div><div class="right clearfix"><div class="item__value">%value%</div><div class="item__percentage">%percentage%</div><div class="item__delete"><button class="item__delete--btn"><i class="ion-ios-close-outline"></i></button></div></div></div>'
+                html = '<div class="item clearfix" id="expense-%id%"><div class="item__description">%description%</div><div class="right clearfix"><div class="item__value">%value%</div><div class="item__percentage">20%</div><div class="item__delete"><button class="item__delete--btn"><i class="ion-ios-close-outline"></i></button></div></div></div>'
             }
 
             newHtml = html.replace('%id%', obj.id);
@@ -216,6 +216,7 @@ let controller = (function(budgetCtrl, UICtrl){
             }
         });
         document.querySelector(elements.container).addEventListener('click', ctrlDeleteItem);
+        // code goes on from here.
     }
 
     let updateBudget = function(){
