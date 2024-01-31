@@ -7,7 +7,6 @@
         <link href="http://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css" rel="stylesheet" type="text/css">
         <link type="text/css" rel="stylesheet" href="assets/css/style.css">
         <link rel="icon" type="image/x-icon" href="assets/images/favicon.png">
-
         <title>Expense Tracker</title>
     </head>
     <body>
@@ -44,39 +43,43 @@
         <div class="bottom">
             <div class="add">
                 <div class="add__container">
-                    <select class="add__type">
+                    <div class="row">
+                        <select class="add__type">
                         <option value="income" selected>+</option>
                         <option value="expense">-</option>
                     </select>
                     <input type="text" class="add__description" placeholder="Add description" required>
                     <input type="number" class="add__value" placeholder="Amount" required>
                     <button class="add__btn"><i class="ion-ios-checkmark-outline"></i></button>
+                    </div>
                 </div>
             </div>
 
             <div class="container clearfix">
-                <div class="income">
-                    <h2 class="icome__title">Income</h2>
+                <div class="row">
 
-                    <div class="income__list">
+                    <div class="income">
+                        <h2 class="icome__title">Income</h2>
 
+                        <div class="income__list">
+
+                        </div>
+                    </div>
+
+
+
+                    <div class="expenses">
+                        <h2 class="expenses__title">Expenses</h2>
+
+                        <div class="expenses__list">
+
+                        </div>
                     </div>
                 </div>
 
 
-
-                <div class="expenses">
-                    <h2 class="expenses__title">Expenses</h2>
-
-                    <div class="expenses__list">
-
-                    </div>
-                </div>
             </div>
-
-
         </div>
-
         <script src="https://kit.fontawesome.com/e97a4be831.js" crossorigin="anonymous"></script>
         <script src="app.js"></script>
     </body>

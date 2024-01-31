@@ -179,21 +179,146 @@ body {
 
 .add__btn:focus { outline: none; }
 
+@media screen and (max-width: 900px) {
+    .add__type, .add__description, .add__value, .add__btn{
+        width: 85%;
+        margin: 5px;
+    }
+    .add__btn {
+        font-size: 45px;
+    }
+}
+
+@media screen and (max-width: 650px) {
+    .add__type, .add__description, .add__value, .add__btn{
+        width: 90%;
+        margin: 5px;
+    }
+    .add__btn {
+        font-size: 45px;
+    }
+}
+
+@media screen and (max-width: 450px) {
+    .add__type, .add__description, .add__value, .add__btn{
+        width: 95%;
+        margin: 5px;
+    }
+    .add__btn {
+        font-size: 45px;
+    }
+}
+
+
+
+
 .container {
-    width: 1000px;
+    max-width: 1000px;
     margin: 60px auto;
 }
 
-.income {
+.row::after {
+  content: "";
+  display: table;
+  clear: both;
+}
+
+.income, .expenses {
+    width: 47.5%;
     float: left;
-    width: 475px;
-    margin-right: 50px;
 }
 
 .expenses {
-    float: left;
-    width: 475px;
+    padding-left: 2.5%;
 }
+
+@media screen and (max-width: 900px) {
+    .container {
+        display: grid;
+        align-items: center;
+        justify-content: center;
+        margin: none;
+    }
+    .income, .expenses {
+        width: 185%;
+        margin-left: -45%;
+    }
+    .expenses {
+        padding-top: 30px;
+        padding-left: 0;
+    }
+}
+
+@media screen and (max-width: 750px) {
+    .container {
+        display: grid;
+        align-items: center;
+        justify-content: center;
+        margin: none;
+    }
+    .income, .expenses {
+        width: 170%;
+        margin-left: -35%;
+    }
+    .expenses {
+        padding-top: 30px;
+        padding-left: 0;
+    }
+}
+
+@media screen and (max-width: 650px) {
+    .container {
+        display: grid;
+        align-items: center;
+        justify-content: center;
+        margin: none;
+    }
+    .income, .expenses {
+        width: 150%;
+        margin-left: -25%;
+    }
+    .expenses {
+        padding-top: 30px;
+        padding-left: 0;
+    }
+}
+
+@media screen and (max-width: 550px) {
+    .container {
+        display: grid;
+        align-items: center;
+        justify-content: center;
+        margin: none;
+    }
+    .income, .expenses {
+        width: 120%;
+        margin-left: -10%;
+    }
+    .expenses {
+        padding-top: 30px;
+        padding-left: 0;
+    }
+}
+
+@media screen and (max-width: 450px) {
+    .container {
+        display: grid;
+        align-items: center;
+        justify-content: center;
+        margin: none;
+    }
+    .income, .expenses {
+        width: 100%;
+    }
+    .expenses {
+        padding-top: 30px;
+        padding-left: 0;
+    }
+}
+
+
+
+
 
 h2 {
     text-transform: uppercase;
