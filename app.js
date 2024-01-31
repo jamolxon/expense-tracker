@@ -123,6 +123,7 @@ let UIController = (function(){
         inputDescription: '.add__description',
         inputValue: '.add__value',
         inputBtn: '.add__btn',
+        deleteBtn: '.ion-ios-close-outline',
         inputContainer: '.income__list',
         expenseContainer: '.expenses__list',
         budgetLabel: '.budget__value',
@@ -182,6 +183,11 @@ let UIController = (function(){
         },
 
         displayBudget: function(obj){
+            console.log("working")
+            console.log("working")
+            console.log("working")
+            console.log("working")
+            console.log("working")
 
             document.querySelector(elements.incomeLabel).textContent = `+ $${obj.totalIncome}`;
             document.querySelector(elements.expenseLabel).textContent = `- $${obj.totalExpense}`;
@@ -206,9 +212,10 @@ let controller = (function(budgetCtrl, UICtrl){
         let elements = UICtrl.getElements();
         document.querySelector(elements.inputBtn).addEventListener('click', ctrlAddItem)
 
+
         document.addEventListener('keypress', function(){
             if(event.keyCode === 13){
-                let input, newItem;
+                let input;
                 input = UICtrl.getInput();
                 if(input.keyCode != 13){
                     ctrlAddItem();
@@ -216,9 +223,13 @@ let controller = (function(budgetCtrl, UICtrl){
             }
         });
         document.querySelector(elements.container).addEventListener('click', ctrlDeleteItem);
+
     }
 
     let updateBudget = function(){
+        console.log("updated budget");
+        console.log("updated budget");
+        console.log("updated budget");
         // 1. Calculate the budget
         budgetCtrl.calculateBudget();
         // 2. Return budget
@@ -228,7 +239,7 @@ let controller = (function(budgetCtrl, UICtrl){
     }
 
 
-    var ctrlAddItem  = function(){
+    let ctrlAddItem  = function(){
         let input, newItem;
         input = UICtrl.getInput();
         // Add the item to the budget controller
@@ -244,8 +255,9 @@ let controller = (function(budgetCtrl, UICtrl){
         updateBudget();
     }
 
-    var ctrlDeleteItem = function (event) {
-        var itemID, splitID, ID, type;
+    let ctrlDeleteItem = function (event) {
+        let itemID, splitID, ID, type;
+
         itemID = event.target.parentNode.parentNode.parentNode.parentNode.id;
 
         if (itemID) {
@@ -256,9 +268,11 @@ let controller = (function(budgetCtrl, UICtrl){
 
             //1. Delete item from the data structure
             budgetCtrl.deleteItem(type, ID);
+
             //2. Delete item from the UI
 
             //3. Update and show the new budget
+            updateBudget();
         }
     }
 
